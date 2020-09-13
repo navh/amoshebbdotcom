@@ -1,7 +1,7 @@
 baseURL = "https://amoshebb.com"
 languageCode = "en-us"
 defaultContentLanguage = "en"
-title = "amos hebb"
+title = "Amos Hebb"
 theme = "hermit"
 # enableGitInfo = true
 pygmentsCodefences  = true
