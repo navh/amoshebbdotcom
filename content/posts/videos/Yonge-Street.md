@@ -1,6 +1,7 @@
 ---
 title: "Yonge Street"
 date: 2020-08-20T18:27:59-04:00
+tags: ["videos"]
 ---
 
 {{< youtube 7nAmXUeqfWc >}}

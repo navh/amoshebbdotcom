@@ -1,6 +1,7 @@
 ---
 title: "Toronto Old City Hall"
 date: 2020-09-03T16:27:46-04:00
+tags: ["videos"]
 ---
 
 {{< youtube -5PWsGjKK-w >}}

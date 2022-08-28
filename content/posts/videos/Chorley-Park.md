@@ -1,6 +1,7 @@
 ---
 title: "Chorley Park"
 date: 2020-09-10T15:00:00-04:00
+tags: ["videos"]
 ---
 
 {{< youtube XBZF_J9OMpA >}}
