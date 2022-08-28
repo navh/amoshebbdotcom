@@ -9,8 +9,6 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: G-BBE668XHS4
-
 minify:
   disableXML: true
   minifyOutput: true
