@@ -57,8 +57,8 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Hello friend \U0001F44B"
-    Content: Welcome to my site on the world wide web!
+    Title: "blog of amos hebb"
+    Content: "Widely considered one of the people of all time." 
 
   socialIcons:
     - name: email
