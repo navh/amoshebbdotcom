@@ -1,6 +1,7 @@
 ---
 title: "A Modified Reinforcement Q Learning Method for Multi Function Phased Array Radar Beam Scheduling"
 date: 2023-01-29T19:09:21-05:00
+tags: ["radar"]
 ---
 
 Kosuru, Qu, Ding, Moo.
