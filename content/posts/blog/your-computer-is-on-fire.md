@@ -10,7 +10,7 @@ The titular essay from Thomas S Mullaney's book "Your computer is on fire". The 
 
 I rate this 2.3.
 
-8 pages of directors-cut feeling intro, the radio edit would only include the punchy bits of the first para, and the first half of the last paragraph. 
+8 pages of directors-cut feeling intro, the radio edit would only include the punchy bits of the first paragraph and the first half of the last paragraph. 
 
 # Summary 
 
