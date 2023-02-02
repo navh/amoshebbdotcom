@@ -94,9 +94,13 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: posts
-      name: posts
-      url: /posts/
+    - identifier: blog
+      name: blog
+      url: /blog/
+      weight: 10
+    - identifier: videos
+      name: videos
+      url: /videos/
       weight: 10
     - identifier: about
       name: about
