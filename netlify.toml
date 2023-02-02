@@ -6,3 +6,5 @@
     HUGO_VERSION = "0.110.0"
     HUGO_ENV = "production"
     HUGO_ENABLEGITINFO = "true"
+    PYTHON_VERSION = "3.11"
+    GO_VERSION = "1.20"
