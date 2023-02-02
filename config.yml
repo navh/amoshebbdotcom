@@ -1,7 +1,7 @@
 baseURL: https://amoshebb.com/
 languageCode: en-us
 title: Amos Hebb
-paginate: 5
+paginate: 10
 theme: PaperMod
 
 enableRobotsTXT: true

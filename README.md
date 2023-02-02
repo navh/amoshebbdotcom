@@ -1,10 +1,6 @@
-# amoshebb.com
 
-This readme is just for me to take notes on how to maintain this website.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7f4a565a-ccd0-49ae-a330-d4f4d2546956/deploy-status)](https://app.netlify.com/sites/amoshebb/deploys)
 
-## About
-
-This website was created using Hugo version 0.101.0
 
 It is hosted on netlify, the domain was bought on namesilo.
 
