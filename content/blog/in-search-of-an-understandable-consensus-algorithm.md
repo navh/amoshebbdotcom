@@ -2,7 +2,6 @@
 title: "In Search of an Understandable Consensus Algorithm"
 date: 2023-01-19T14:26:27-05:00
 tags: ["web-scale"]
-draft: true
 ---
 
 Diego Ongaro
