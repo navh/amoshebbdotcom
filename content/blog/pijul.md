@@ -2,7 +2,6 @@
 title: "Pijul"
 date: 2023-02-09T13:28:51-05:00
 tags: ["emperical","CAD"]
-draft: true
 --
 
 The challenge to tackle: Version control for CAD sucks.
