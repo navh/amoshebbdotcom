@@ -108,6 +108,3 @@ Flink supports `TUMBLE`ing and `SLIDE`ing windows, and complex event processing 
 1. Kubernetes model, containers which are usually workers, but there is a master image and one container will run the master. 
 1. Also Cloud DataProc. 
 
-# Amos's thoughts
-
-Dense conference talk, I couldn't keep up. Delivery felt like an extremly dry ad, Robert's soothing voice nearly put me to sleep. I'm still not sure I really know how to do anything with Flink, submitting `.jar`s sound awful, I'm going to go see if a python interface exists, if not, I may try to get the gang to move away from Flink. 
