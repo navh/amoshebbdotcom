@@ -93,3 +93,67 @@ Unbounded queries never terminate, time can't be used.
 - How accurate is system? Output matching.
 
 Create output of ideal system (zero latency, perfect accuracy) offline, measure and compare online latency and results.
+
+# Beyond the Paper!
+
+In [nexmark's github](https://github.com/nexmark/nexmark) there are some bonus queries lifted from Apache Beam, let's see what we find.
+
+### Q9: Winning Bids
+
+
+### Q10: Log to File System
+
+Partitioned file system stress test.
+
+### Q11: User Sessions
+
+Session windows.
+How many bids did a user make while active?
+
+### Q12: Processing Time Windows
+
+Time based, fixed window.
+Count user bids within processing time window.
+
+### Q13: Bounded Side Input Join
+
+Join a stream to a bounded side input.
+
+### Q14: Calculation
+
+Complex projection and filter.
+
+### Q15: Bidding Statistics Report
+
+Multiple distinct aggregations with filters.
+How many distinct users join at price bounds. 
+
+### Q16: Channel Statistics Report
+
+Multiple distinct aggregations with filters for multiple keys. 
+Distinct users join bidding for different levels for a channel. 
+
+### Q17: Auction Statistics Report
+
+Unbounded group aggergation. 
+Bids and price on an auction made each day.
+
+### Q18: Find Last Bid
+
+Deduplicate query, last bid for each bidder.
+
+### Q19: Auction TOP-10 Price
+
+TOP-N bids per auction.
+
+### Q20: Expand bid with auction
+
+Filter join. Get bids for specific category.
+
+### Q21: Add channel id
+
+Regex? Parser? Disk? Not sure what this wants to stress, doesn't feel like a window. 
+
+### Q22: Get URL Directories
+
+SPLIT_INDEX speed test? Not sure, not what I'm looking for though.  
