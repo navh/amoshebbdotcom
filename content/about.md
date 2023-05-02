@@ -18,7 +18,8 @@ ShowWordCount: false
 
 ### Student at University of Toronto
 
-Master of Engineering in Computer Engineering student.
+Master of Applied Science in Computer Engineering student under Dr Adve in the Communications group at the University of Toronto.
+Bringing deep reinforcement learning to radar scheduling.
 
 ### Senior Consultant at Deloitte
 
@@ -30,7 +31,7 @@ Working in a super cool Data Science and Engineering lab in HSBC’s Toronto off
 
 ### BEng, Computer Engineering
 
-Bachelor of Computer Engineering, First Class Distinction, from Royal Military College, spending summers doing Aerospace Engineering introductory training, and military basic training.
+Bachelor of Computer Engineering, First Class Distinction, from the Royal Military College of Canada, spending summers doing Aerospace Engineering introductory training, and military basic training.
 
 ### Exchange Student
 
