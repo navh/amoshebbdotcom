@@ -19,7 +19,7 @@ ShowWordCount: false
 ### Student at University of Toronto
 
 Master of Applied Science in Computer Engineering student under Dr Adve in the Communications group at the University of Toronto.
-Bringing deep reinforcement learning to radar scheduling.
+Applying reinforcement learning to radar scheduling.
 
 ### Senior Consultant at Deloitte
 
