@@ -1,5 +1,5 @@
 ---
-title: "Phased_Array_Radar_Resource_Management_Using_Continuous_Double_Auction"
+title: "Phased Array Radar Resource Management Using Continuous Double Auction"
 date: 2023-06-12T10:29:06-04:00
 tags: ["radar"]
 ---

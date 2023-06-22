@@ -1,5 +1,5 @@
 ---
-title: "Do_winners_pick_government"
+title: "Do winners pick government"
 date: 2023-06-20T13:50:05-04:00
 tags: ["startup"]
 ---
