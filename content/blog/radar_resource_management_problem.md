@@ -2,6 +2,8 @@
 title: "Radar Resource Management Problem"
 date: 2023-06-06T14:15:19-04:00
 tags: ["radar"]
+math: true
+draft: true
 ---
 
 6-chapter book by Peter Moo and Zhen Ding.
@@ -213,10 +215,61 @@ Operating system like scheduling. Once a task is scheduled, it moves to the back
 
 ### Adaptive Update Intervals for Tracking 
 
+Plots for the Fuzzy Logic and Time-Balancing are interlaced with some fairly terse math I didn't take time to actually look at. There are plots showing priority going down over time. I guess they introduced a  bunch of targets all just before 200s and this shows that eventually they get siphoned off to lower priority, with no obvious impacts on a lot of things, other than just being better than 'nonadaptive' pretty much across the board. 
 
-
+This is how the chapter ends, perhaps if I spent more time thinking about it I could figure out what these plots should be telling me, but as presented, I have no idea if this is good or bad. 
 
 # 4 Adaptive Scheduling Techniques
+
+## Optimal Assignment Scheduler 
+
+Two sets of priorities: 
+1) Function Priorities
+2) Task Priorities
+
+These are enumerated 1 through 8, given names like "1. high-priority tracks", "5. track initiation", and "8. built-in-test". Curious to me that track initiation is lower priority than track maintenance.
+
+Time-balancing scheduler is a simple and efficient linear programming algorithm. Each function has a time balance, function with maximum time balance goes next. 
+
+Basically you tweak these time budgeting functions until you get the ratios you want for the different tasks. In this case, not much at all like operating systems, the tasks are all left to run for their full duration and never release their time early or wait for interrupts. It is not clear to me what this actually solves, it feels like it just kicks the problem one step down the road to picking good time balance algorithms to keep everything properly balanced.
+
+## Two-Slope Benefit Function Scheduler 
+
+Decide which looks to retain by tracking error covariance to schedule track updates.
+
+Oh boy, so these 'looks' are like my 'tasks', but richer.
+
+- $l_n$, time required to complete the look in seconds,
+- $t^*_n$, desired start time
+- $s_n$, earliest start time 
+- $u_n$, latest start time 
+- $B^*_n$, peak benefit
+- $\delta_n$, slope for early scheduling
+- $\Delta_n$, slope for late scheduling
+
+In this case they build a 'benefit ^' instead of a 'cost V', this also means that all unscheduled tasks just have zero benefit, they can't make dropping higher priority tasks worse, I guess they just plan to capture this in having taller benefit tents. 
+
+Input is P look requests, and the output is a viable subset of N looks, where N <= P, and the start times of each of the N looks. 
+
+Look requests are sorted by desired start time, so are not shuffled around. Reduces search space, not necessarily optimal schedule.
+
+It first selects a viable set, then gives start times. Given that it isn't ever shuffling any, the start time assignment is probably pretty simple. NOTE: It is not just head-to-tail, they do some linear programming to maximize the benefit function.
+
+The more I read the more I realize that I basically just accidentally remade a worse version of this. They're trying to add new tasks and pick the one with the biggest benefit and keep going forever. I guess the way I could slide around multitasks is interesting.
+
+They come up with a few corner cases that end up actually simplifying the problem. One I've thought of: What if the slope takes the benefit below zero before reaching the latest start time, a bizarre situation where the schedule could be improved by dropping a task would appear. I guess the iterative way they add tasks prevents this from happening.
+
+### Gap-Filling Sub-Scheduler for Secondary Looks 
+
+For surveillance functions they have a whole function to cram them in where they fit. Implementation details: It's a bit of a generator function that just always has one outstanding look request. 
+
+Equal look priorities: looks are scheduled FIFO.
+
+Unequal look priorities: Position in queue is determined by some function, but yikes, this feels so complex I'm not sure why we treat it as a subsystem and don't just schedule everybody together.
+
+I guess there's some concept of "Primary Looks" that are, by definition, all higher priority than any "Secondary Look"... this feels wrong to me though. If ever tracking reaches overload, we could go years without ever doing surveillance. 
+
+
 
 # 5 Radar Resource Management for Networked Radars 
 
