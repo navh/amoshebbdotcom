@@ -12,7 +12,7 @@ Steven Denney, Travis Southin, David A Wolfe
 
 ### Bottom Line Up Front
 
-Scaleups prefer grants to tax incentives, want government to 'pick winners' instead of spreading out the love. They're positive and negative about everything.
+Scaleups prefer grants to tax incentives and want government to 'pick winners' instead of spreading out the love. They're positive and negative about everything.
 
 # Summary
 
@@ -59,7 +59,7 @@ The few direct grants we have are for manufacturing, especially automotive and a
 
 Nortel and RIM failed to leave no anchor firms.
 
-ISED wanted to double Canada's high-growth firms between 2019 and 2025, not only not on track, but there are actually fewer in 2023 than in 2019.
+ISED wanted to double Canada's high-growth firms between 2019 and 2025, not only is it not on track, but there are fewer in 2023 than in 2019.
 
 Scaleups are too big to be helped by incubators, and too small to take advantage of "neutral" policies which are mostly consumed by gigantic multinationals. They have a disproportionate economic impact, especially:
 - net job creation
