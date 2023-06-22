@@ -2,7 +2,6 @@
 title: "Do_winners_pick_government"
 date: 2023-06-20T13:50:05-04:00
 tags: ["startup"]
-draft: true
 ---
 
 Do winners pick government? How scale-up experience shapes entrepreneurs’ assessments of innovation policy mixes
@@ -13,7 +12,7 @@ Steven Denney, Travis Southin, David A Wolfe
 
 ### Bottom Line Up Front
 
-I rate this 
+Scaleups prefer grants to tax incentives, want government to 'pick winners' instead of spreading out the love. They're positive and negative about everything.
 
 # Summary
 
