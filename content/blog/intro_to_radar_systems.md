@@ -1,5 +1,5 @@
 ---
-title: "Intro_to_radar_systems"
+title: "Intro to Radar Systems"
 date: 2023-06-03T13:21:49-04:00
 tags: ["radar"]
 math: true
@@ -82,7 +82,6 @@ Amplitude is often volts.
 Explains constructive and destructive addition showing 180-degree signals canceling out.
 
 Explains electromagnetic wave/Maxwell's equations just showing the classic sign waves on an XYZ axis with the yellow electric field and purple magnetic field laying along X axis. When an electric field is on Y axis 'Vertical Polarization', when electric field is on X axis, 'Horizontal Polarization'. More coming later. 
-math: true
 
 # Lecture 2: Introduction Part 2
 
@@ -114,3 +113,5 @@ PRF (Pulse repetition frequency) = 1/PRI (pulse repetition interval)
 # Radar Equation
 
 https://www.youtube.com/watch?v=85AvztY3Qco&list=PLUJAYadtuizA8RC2Qk8LfmiWA56HZsk9y&index=4
+
+
