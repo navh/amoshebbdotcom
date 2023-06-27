@@ -6,6 +6,8 @@ tags: ["bugs"]
 
 Aaron J Corcoran, Jesse R. Barber, William E. Conner
 
+https://www.science.org/doi/epdf/10.1126/science.1174096
+
 I found this while googling for different types of radar jamming acronyms at the bottom of a wikipedia article.
 
 # Summary
