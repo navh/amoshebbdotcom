@@ -13,8 +13,8 @@ So the U.S. military has 5 UAS groups:
 1. <20lbs (<9kg), <1,200ft AGL, <100kts
 2. 21-55lbs (9-20kg), <3,500ft AGL, <250kts
 3. 55-1,320lbs (20-600kg), <18,000ft AGL, <250kts
-4. >1,320lbs, <18,000ft AGL
-5. >1,320lbs, >18,000ft AGL
+4. 1,320+lbs, <18,000ft AGL
+5. 1,320+lbs >18,000ft AGL
 
 The DND challenge is, to a rounding error, only for group 1 and group 2 drones.
 
