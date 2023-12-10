@@ -2,7 +2,7 @@ baseURL: https://amoshebb.com/
 languageCode: en-us
 title: Amos Hebb
 paginate: 10
-theme: PaperMod
+theme: ["hugo-video", "PaperMod"]
 
 enableRobotsTXT: true
 buildDrafts: false
