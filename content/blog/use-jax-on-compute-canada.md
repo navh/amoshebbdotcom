@@ -10,22 +10,23 @@ I've had luck getting GPUs quickly on `graham.computecanada.ca`, so I suggest yo
 On the login node:
 
 Previously I was explicitly specifying a new StdEnv, but for now, the latest one is the default. This is not necessary right now but for future reference.
-
 ```bash
 module load StdEnv/2023
 ```
 
-Figure grab the least stale python
+Figure grab the least stale python and cuda 
 ```bash
 module spider python
+module spider cuda
 ```
 
-Grab a specific version
+Grab specific versions
 ```bash
 module load python/3.11.5
+module load cuda/12.2
 ```
 
-Or if you're feeling lucky, I usually just
+Or if you're feeling lucky, I usually just module load python cuda
 
 Create a Python virtual environment, I'll name it `jaxenv`
 
@@ -73,6 +74,7 @@ In an interactive session with a GPU attached:
 ```python
 import jax.numpy as jnp
 from jax import grad, jit, vmap, random
+key = random.key(0)
 x = random.normal(key, (3000,3000), dtype=jnp.float32)
 jnp.dot(x, x.T).block_until_ready() # runs on the GPU
 ```
