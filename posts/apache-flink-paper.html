@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apache Flink Paper — Amos Hebb</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.ico">
+<script>window.MathJax = { output: { font: 'mathjax-stix2' } };</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/mml-chtml-nofont.js"></script>
+</head>
+<body>
+<nav><a href="../index.html">Amos Hebb</a></nav>
+<h1>Apache Flink Paper</h1>
+
+<p class="date">2023-03-08</p>
+
+<p>Paris Carbone, Asterios Katsifodimos, Stephan Ewen, Volker Markl,
+Seif Haridi, Kostas Tzoumas, presented in the world’s most confusing
+game of asterisks I’ve seen so far.</p>
+<h3 id="bottom-line-up-front">Bottom Line Up Front</h3>
+<p>I rate this 3.9.</p>
+<p>Flink is an academic attempt at replacing Spark. I haven’t figured
+out why. I guess just even higher level/more optimizations? Or maybe I’m
+late to the party and most of these have spilled into Spark? Flink
+programs compute both early and approximate and delayed and accurate
+results in the same operation. It walks a funny line, too technical and
+custom to be a general solution, too many features to solve a specific
+problem. Feels like a period piece, an era of software I just frankly
+have trouble falling in love with.</p>
+<h1 id="summary">Summary</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Data-stream processing (complex event processing systems) and batch
+processing (MPP databases, Hadoop) were once considered very different.
+Different models, APIs, executed by different systems.</p>
+<p>Streaming: - Apache Storm - IBM Infsphere Streams - Microsoft
+StreamInsight - Streambase</p>
+<p>Batch: - Apache Spark - Apache Drill</p>
+<p>Most batches are data that are produced continuously over time.
+(various types of logs) Arbitrary ‘daily’ runs.</p>
+<p>“Lambda Architecture” combine batch and stream processing systems to
+implement multiple paths of computation. Fast and wrong lane, and an
+offline but correct lane.</p>
+<p>Flink programs compute both early and approximate and delayed and
+accurate results in the same operation. Batch programs are special cases
+of streaming programs, where stream is finite and order of records does
+not matter. Just one giant window.</p>
+<p>Flink was <a
+href="https://github.com/stratosphere/stratosphere">Stratosphere</a>
+from 2011 to 2014. I’ll explore this further. Looks like it is mostly
+academic.</p>
+<h2 id="contributions">Contributions</h2>
+<ul>
+<li>Make the case for unified stream and batch processing</li>
+<li>show how streaming, batch, iterative, and interactive analytics are
+all just streaming.</li>
+<li>built a full-fledged batch machine out of a streaming one</li>
+</ul>
+<h2 id="system-architecture">System Architecture</h2>
+<p><strong>Core</strong> is the distributed dataflow engine, which
+executes dataflow programs. DAG of stateful operators connected with
+data streams.</p>
+<p><strong>Core cores</strong> Two core APIs to the core. DataSet API
+for batch. DataStream for streams.</p>
+<p><strong>Client</strong> has a flink program, graph builder, and
+optimizer. Client takes program code and submits it as a dataflow graph
+to the JobManager. They all do schema wizardry, DataSet ones get double
+optimization wizardry like RDBs.</p>
+<p><strong>JobManager</strong> Changes depending on availability level,
+but schedules and coordinates checkpoints.</p>
+<p><strong>TaskManager</strong> execute an operator that produces a
+stream. They negotiate with JobManager, they buff and pool network
+things too.</p>
+<h2 id="the-common-fabric-streaming-dataflows">The Common Fabric:
+Streaming Dataflows</h2>
+<p>Everything is a dataflow graph. Yes, both Batch and stream. Flink
+runtime engine executes it.</p>
+<h3 id="dataflow-graphs">Dataflow Graphs</h3>
+<p>A Directed Acyclic Graph (DAG) with: - Stateful Operators: split into
+parallel instances called <em>subtasks</em> - Dataflows: split into
+<em>stream partitions</em>, point-to-point, broadcast, re-partition,
+fan-out, and merge.</p>
+<h3 id="data-exchange-through-intermediate-data-streams">Data Exchange
+through Intermediate Data Streams</h3>
+<p>Core abstraction for data-exchange between operators. Logical (may
+not be on disk) handle for data in transit. Program Optimizer
+decides.</p>
+<h4 id="pipelined-and-blocking-data-exchange">Pipelined and Blocking
+Data Exchange</h4>
+<p><strong>Pipelined intermediate streams</strong> Between concurrently
+running producers and consumers. Propagate back pressure from consumers
+to producers other than buffer pools. Continuous streaming programs, and
+many parts of batch dataflows to avoid materialization.</p>
+<p><strong>Blocking streams</strong> bounded data streams are buffered
+before being made available. RAM hogs, spill onto disk, no backpressure
+though. Break up operators that can deadlock like sort-merge.</p>
+<h4 id="balancing-latency-and-throughput">Balancing Latency and
+Throughput</h4>
+<p>Finished records are placed into a buffer. Buffers can hold multiple
+records. Once full or timeout, buffer is sent to consumer. Dial these up
+for more throughput, down for speed.</p>
+<h4 id="control-events">Control Events</h4>
+<p>Special events injected into data streams by operators. Receiving
+operators react upon arrival. - Checkpoint Barriers - divide stream into
+before and after checkpoint - Watermarks - timestamps - Iteration
+barriers - end of superstep, in Bulk/Stale-Synchronous-Parallel
+iterative algorithms on top of cyclic dataflows.</p>
+<h3 id="fault-tolerance">Fault Tolerance</h3>
+<p>Exactly-once-processing via checkpointing and partial re-execution.
+Assumption: sources are persistent and replayable. eg: Kafka. Bolt on
+write-ahead log if not.</p>
+<p>Distributed consistent snapshots achieve exactly-once-processing.
+Replaying long running (month+) jobs impractical, to bound recovery
+time, snapshots are taken.</p>
+<p>Challenge: parallel snapshot without halting. Solution:
+<strong>Asynchronous Barrier Snapshotting</strong>. Barriers are control
+records injected into input streams. Operator receives barrier and dumps
+state to disk. Resembles Chandy-Lamport algorithm for async distributed
+snapshots. Because of the DAG nature of Flink, ABS does not need to
+checkpoint in-flight records. Only current state needs to be kept.</p>
+<p>ABS Benefits: guarantees exactly-once, decoupled from other control,
+and use any storage (so pick reliable storage).</p>
+<h3 id="iterative-dataflows">Iterative Dataflows</h3>
+<p>Most others need new DAG for each iteration to be submitted. Flink
+has ‘head’ and ‘tail’ tasks that <em>implicitly</em> connect feedback
+edges. (Cyclic DAG? They elaborate more in 4.4 and 5.3)</p>
+<h2 id="stream-analytics-on-top-of-dataflows">Stream Analytics on Top of
+Dataflows</h2>
+<p>Full stream-analytics framework on top of Flink’s runtime. DataStream
+is unbounded immutable colleciton of elements of a given type. Flink’s
+runtime has pipelined data, continuous stateful operators, and
+fault-tolerance. All we’re missing is a windowing system and state
+interface.</p>
+<h3 id="the-notion-of-time">The Notion of Time</h3>
+<ol type="1">
+<li>event-time - denotes the time when an event originates</li>
+<li>processing-time - wall-clock time of machine processing data</li>
+<li>ingestion-time - the time events enter Flink</li>
+<li>real-time - wall-clock time for you and me</li>
+</ol>
+<p>Arbitrary skew between event-time and processing-time. To avoid
+arbitrary delays, low watermarks mean all events lower than t have
+already entered an operator. Some operators just forward, complex ones
+do calculations. If there’s two, minimum watermark is forwarded.</p>
+<h3 id="stateful-stream-processing">Stateful Stream Processing</h3>
+<p>Most operators look like functional, side-effect-free operators, they
+provide support for efficient stateful computations. In Flink, state is
+explicit in the API with: 1) operator interfaces statically register
+explicit local variables 1) operator-state abstraction for declaring
+partitioned key-value states 1) Users can monkey with StateBackend</p>
+<h3 id="stream-windows">Stream Windows</h3>
+<p>Windows are stateful operators with three core functions: a window
+<em>assigner</em>, a <em>trigger</em>, and an <em>evictor</em>. There is
+a pool of common predefined implemetations, or a user can explicitly
+define their own function.</p>
+<p><em>Assigner</em> assigns records to each window. For sliding
+windows, one element may belong to many.</p>
+<p><em>Trigger</em> defines when operation will be performed.</p>
+<p><em>evictor</em> determines which records to retain.</p>
+<p>Capable of covering all known window types: Periodic time,
+count-windows, punctuation, landmark, session, delta windows.
+Out-of-order is seamless, like Google Cloud Dataflow. eg, trigger fired
+after watermark passes.</p>
+<p>Evict on a count of to only keep last n elements, trigger on a bigger
+number if you want.</p>
+<h3 id="asynchronous-stream-iterations">Asynchronous Stream
+Iterations</h3>
+<p>An explicit feedback stream subsumes structured loops over streams
+and progress tracking.</p>
+<h2 id="batch-analytics-on-top-of-dataflows">Batch Analytics on Top of
+Dataflows</h2>
+<p>Bounded data is special case of unbounded. Create a big window, send
+it off. Bounded data has bonus optimizations. Execute at same time as
+streaming. Periodic snapshotting is turned off when overhead is high.
+Blocking operators block until they have consumed their entire input.
+This can spill to disk. Runtime doesn’t know or care about blocks.
+Joins, aggregations, iterations.</p>
+<h3 id="query-optimization">Query optimization</h3>
+<p>UDF-heavy DAGs are hard to optimize. They still try.</p>
+<h3 id="memory-management">Memory Management</h3>
+<p>O Lord have mersay. JVM heap is trash, so they’ve done something
+reasonable. Just kidding, custom binary off-heap bespoke runtime garbage
+collector on top of the garbage collector. I rate this solution 🤢
+stars.</p>
+<h3 id="batch-iterations">Batch Iterations</h3>
+<p>Interactive graph analytics. Bulk Synchronous Parallel, Stale
+Synchronous Parallel, and <em>delta</em> iterations which can exploit
+sparse dependencies.</p>
+<h2 id="related">Related</h2>
+<h3 id="batches">Batches</h3>
+<ul>
+<li>Hadoop</li>
+<li>MapReduce</li>
+<li>Dryad</li>
+<li>SCOPE</li>
+<li>Apache Tez</li>
+<li>MPP databases</li>
+<li>Apache Drill</li>
+<li>Impala</li>
+<li>Apache Spark</li>
+</ul>
+<p>Flink is the only one with distributed runtime, exactly-once, native
+iterative processing (is this the secret sauce?), sophisticated window
+semantics, and out-of-order processing.</p>
+<h3 id="streams">Streams</h3>
+<ul>
+<li>SEEP</li>
+<li>Naiad</li>
+<li>Microsoft StreamInsight</li>
+<li>IBM Streams</li>
+<li>MillWheel</li>
+<li>Apache Beam/Google Dataflow</li>
+</ul>
+<p>Flink is only open-source project that supports event time and
+out-of-order event processing, provides consistent managed state with
+exactly-once, high throughput and low latency enough for both batch and
+stream.</p>
+<footer><a href="../index.html">← index</a></footer>
+</body>
+</html>

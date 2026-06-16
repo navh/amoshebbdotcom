@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Modified Reinforcement Q Learning Method for Multi Function
+Phased Array Radar Beam Scheduling — Amos Hebb</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../favicon.ico">
+<script>window.MathJax = { output: { font: 'mathjax-stix2' } };</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4.1.2/mml-chtml-nofont.js"></script>
+</head>
+<body>
+<nav><a href="../index.html">Amos Hebb</a></nav>
+<h1>A Modified Reinforcement Q Learning Method for Multi Function Phased
+Array Radar Beam Scheduling</h1>
+
+<p class="date">2023-01-29</p>
+
+<p>Kosuru, Qu, Ding, Moo.</p>
+<h3 id="bottom-line-up-front">Bottom Line Up Front</h3>
+<p>RL agent is forced to pick one of 4 schedulers. Usually hones in on
+the best one.</p>
+<h1 id="summary">Summary</h1>
+<h3 id="introduction">Introduction</h3>
+<p>Radars can have many tasks. Tasks have priority
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>,
+times
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mrow><mi>s</mi><mi>t</mi><mi>a</mi><mi>r</mi><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">t_{start}</annotation></semantics></math>,<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mrow><mi>d</mi><mi>w</mi><mi>e</mi><mi>l</mi><mi>l</mi></mrow></msub><annotation encoding="application/x-tex">t_{dwell}</annotation></semantics></math>.
+Windows have a length
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>.
+Time frame lasts
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><annotation encoding="application/x-tex">t_{total}</annotation></semantics></math>.</p>
+<p>Radar resource management “RRM” tries to maximize utilization of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+by dropping some tasks during overloading situations.</p>
+<p>Branch and Bound method is great but computationally expensive.
+Neural nets, search trees, reduce computation.</p>
+<h5 id="task-selection-and-params">Task Selection and Params</h5>
+<p>We consider
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">N=8</annotation></semantics></math>
+tasks in window
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">L=1</annotation></semantics></math>.
+Cost increases as more tasks are moved. Taken from Qu, Ding, Moo “A
+machine learning radar scheduling method based on the EST
+algorithm”.</p>
+<h5 id="scheduling-algos">Scheduling Algos</h5>
+<ol type="1">
+<li>earliest start time (est)</li>
+<li>priority scheduling</li>
+<li>dwell time priority scheduling</li>
+<li>random shifted start time (rsst)</li>
+</ol>
+<p>Summaries of each algo are given.</p>
+<p>EST ignores priority and dwell length. Falls over on late
+high-priority tasks.</p>
+<p>Priority sorts by priority, then run in order, ignoring
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>t</mi><mrow><mi>e</mi><mi>a</mi><mi>r</mi><mi>l</mi><mi>i</mi><mi>e</mi><mi>s</mi><mi>t</mi></mrow></msub><annotation encoding="application/x-tex">t_{earliest}</annotation></semantics></math>.
+High-priority high dwell task bumps everything else.</p>
+<p>Dwell time prefers short dwell high-priority tasks, and puts them
+before high dwell low-priority tasks. (Hand-waved)</p>
+<p>Random shifted start time shifts everything randomly, then EST, for K
+iterations, best is chosen. (I now understand why this was expensive on
+the other paper).</p>
+<h3 id="proposed-selection-method">Proposed Selection Method</h3>
+<h5 id="reinforcement-learning">Reinforcement Learning</h5>
+<p>An ML101 summary of RL is given.</p>
+<p>Actions are algorithms.</p>
+<p>Confusing exhaustive search to select target value. <em>thought</em>
+don’t we already have a cost function? Feels roundabout to first define
+a cost function, then run
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mi>!</mi></mrow><annotation encoding="application/x-tex">8!</annotation></semantics></math>
+searches through it, then decide the best answer, label the best one,
+then train Q-Learner to turn over the best rock instead of just using
+the costs directly. I’ll ask about this.</p>
+<h5 id="numerical-simulation">Numerical Simulation</h5>
+<p>Instead of evaluating
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mi>!</mi></mrow><annotation encoding="application/x-tex">8!</annotation></semantics></math>,
+they run 500 rounds and select best for this. This is why bonus points
+are needed.</p>
+<p>The simulation is generally won by RSST. Grids of numbers are hard to
+look at or compare, I’m told they show RSST is always best.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>DQN usually picks RSST.</p>
+<p>I’m left wondering why this is an RL task at all, feels more like a
+classifier.</p>
+<p>I’m left wondering why bother with anything at all if RSST is always
+the correct choice.</p>
+<p>Clearly I am missing something, I’ve re-read the numerical simulation
+section a couple times and can’t quite figure out what it is trying to
+tell me. I’ll discuss with the team later.</p>
+<footer><a href="../index.html">← index</a></footer>
+</body>
+</html>

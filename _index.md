@@ -1,0 +1,41 @@
+---
+title: Amos Hebb
+---
+
+[about](about.html)
+
+---
+
+- 2026-06-16 — [Authoring with Typst](posts/hello-typst.html)
+- 2024-12-02 — [Synthetic Post-Dive Doppler Ultrasound](posts/synthetic-post-dive-doppler-ultrasound.html)
+- 2024-11-05 — [Distributed Multi Hypothesis Testing](posts/distributed-multi-hypothesis-testing.html)
+- 2024-05-02 — [Use Jax on Compute Canada/Digital Research Alliance of Canada](posts/use-jax-on-compute-canada.html)
+- 2023-12-03 — [Compositional Learning Based Planning for Vision Pomdps](posts/compositional-learning-based-planning-for-vision-pomdps.html)
+- 2023-11-21 — [IEEE Toronto Government Incentives](posts/ieee-toronto-government-incentives.html)
+- 2023-07-31 — [Micro-Doppler Based Detection and Tracking of UAVs With Multistatic Radar](posts/micro-doppler-based-detection-and-tracking-of-uavs-with-multistatic-radar.html)
+- 2023-07-22 — [Cognitive Radar Management](posts/cognitive-radar-management.html)
+- 2023-07-14 — [Googling for Existing Counter Uas Tech](posts/googling-for-existing-counter-uas-tech.html)
+- 2023-07-12 — [Canadas Academic Research and Development in Unmanned Aerial Systems 2020 Survey](posts/canadas-academic-research-and-development-in-unmanned-aerial-systems-2020-survey.html)
+- 2023-07-11 — [5g Network Based Passive Radar](posts/5g-network-based-passive-radar.html)
+- 2023-07-05 — [Appendix on Good Scientific Writing](posts/appendix-on-good-scientific-writing.html)
+- 2023-06-28 — [An Overview of Cognitive Radar: Past Present and Future](posts/an-overview-of-cognitive-radar-past-present-and-future.html)
+- 2023-06-27 — [Tiger Moth Jams Bat Sonar](posts/tiger-moth-jams-bat-sonar.html)
+- 2023-06-27 — [Benchmark for Radar Allocation and Tracking in ECM](posts/benchmark-for-radar-allocation-and-tracking-in-ecm.html)
+- 2023-06-25 — [The Radar Resource Management Problem](posts/radar_resource_management_problem.html)
+- 2023-06-20 — [Do winners pick government](posts/do_winners_pick_government.html)
+- 2023-06-12 — [Phased Array Radar Resource Management Using Continuous Double Auction](posts/phased_array_radar_resource_management_using_continuous_double_auction.html)
+- 2023-03-20 — [Branch and Bound Total Weighted Tardiness](posts/branch-and-bound-total-weighted-tardiness.html)
+- 2023-03-15 — [Failure Is a Four Letter Word](posts/failure-is-a-four-letter-word.html)
+- 2023-03-14 — [Nexmark Paper](posts/nexmark-paper.html)
+- 2023-03-08 — [Apache Flink Paper](posts/apache-flink-paper.html)
+- 2023-03-03 — [Apache Flink 101](posts/apache-flink-101.html)
+- 2023-03-01 — [Bigtable](posts/bigtable.html)
+- 2023-01-30 — [Artificial Intelligence Meets Radar Resource Management Lit Review](posts/artificial-intelligence-meets-radar-resource-management-lit-review.html)
+- 2023-01-30 — [Act Designing Sustainable Computer Systems With an Architectural Carbon Modeling Tool](posts/act-designing-sustainable-computer-systems-with-an-architectural-carbon-modeling-tool.html)
+- 2023-01-29 — [A Modified Reinforcement Q Learning Method for Multi Function Phased Array Radar Beam Scheduling](posts/a-modified-reinforcement-q-learning-method-for-multi-function-phased-array-radar-beam-scheduling.html)
+- 2023-01-28 — [Dual Side Scheduling for Radar Resource Management](posts/dual-side-scheduling-for-radar-resource-management.html)
+- 2023-01-19 — [In Search of an Understandable Consensus Algorithm](posts/in-search-of-an-understandable-consensus-algorithm.html)
+- 2023-01-18 — [Zookeeper Wait Free Coordination](posts/zookeeper-wait-free-coordination.html)
+- 2023-01-17 — [Power Performance Area Cost Environmental Score for Logic Tech](posts/power-performance-area-cost-environmental-score-for-logic-tech.html)
+- 2023-01-17 — [Materials and Sustainable Development Chapter 1](posts/materials-and-sustainable-development-chapter-1.html)
+- 2023-01-17 — [Dennard Scaling](posts/dennard-scaling.html)
