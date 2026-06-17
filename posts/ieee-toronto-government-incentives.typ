@@ -1,31 +1,31 @@
----
-title: "IEEE Toronto Government Incentives"
-date: 2023-11-21
-tags: ["startup"]
----
+#import "/template.typ": post
+#let info = (title: "IEEE Toronto Government Incentives", date: "2023-11-21", tags: ("startup",))
+#metadata(info) <frontmatter>
+#show: body => post(info: info, body)
+
 Talk by Andrew Skeldon
 
-== Incentives Landscape in Canada
+= Incentives Landscape in Canada
 
 Overview, there are a few buckets:
 
-- **Tax credits**, typically no defined budget, if you meet criteria you apply and get it.
-- **Defined grants and discretionary**, government picks-and-chooses based on many rules.
-- **Negotiated**, very large investment, company may go directly to government and present business case.
+- *Tax credits*, typically no defined budget, if you meet criteria you apply and get it.
+- *Defined grants and discretionary*, government picks-and-chooses based on many rules.
+- *Negotiated*, very large investment, company may go directly to government and present business case.
 
 There are roughly 3,000 programs in Canada.
 They have general themes though:
 
-- **R&D Projects**, for product and process from basic research to shop floor
-- **Capital Investments**
-- **Employment**, creation, conversion, and training.
-- **Location**
-- **Environment**
-- **New Markets**
+- *R&D Projects*, for product and process from basic research to shop floor
+- *Capital Investments*
+- *Employment*, creation, conversion, and training.
+- *Location*
+- *Environment*
+- *New Markets*
 
 Focus and opportunities, of late, Federal Side:
 
-- Big push on *Clean Tech*, energy/environment.
+- Big push on _Clean Tech_, energy/environment.
 - Innovation and AI
 - Critical minerals
 - Agri-food
@@ -38,13 +38,13 @@ Ontario Provincial:
 
 Shift away from direct grants toward loans.
 
-## Key Considerations
+== Key Considerations
 
-- Plan ahead, application for non-tax incentives must be made **before** the investment begins.
-- Budget, stacking possible, typically <75% of the project cost.
+- Plan ahead, application for non-tax incentives must be made *before* the investment begins.
+- Budget, stacking possible, typically #sym.lt 75% of the project cost.
 - Partnerships, number of plans want multiple entities
 
-## Tips
+== Tips
 
 - Understand the program
 - Demonstrate the plan
@@ -53,22 +53,22 @@ Shift away from direct grants toward loans.
 - Avoid fluff
 - Justify funding need
 
-## SR&ED
+== SR&ED
 
 Tax credit. What's new: CRA review has brought up the "5 Questions", really 2: How did you go about the project? Why did you go with this project? They want to see a systematic approach and some advancement in knowledge.
 
-## Clean Economy ITCs
+== Clean Economy ITCs
 
 There are 6 credits.
 Refundable tax rate is different for each program.
 Some are subject to labor requirements.
 None of this applies to anything I'm doing, but let's talk about:
 
-- Clean Technology Investment Taxi Credit, these ITCs are very much focused on capital assets.
+- Clean Technology Investment Tax Credit, these ITCs are very much focused on capital assets.
 - Mostly solar panels, heat pumps, etc.
 - Includes industrial zero-emission vehicles, charging stations, and more.
 
-## Discretionary Program Examples
+== Discretionary Program Examples
 
 Defined criteria, priorities.
 
@@ -89,7 +89,7 @@ Defined criteria, priorities.
 - SWODF/EODF - Southwestern Ontario Development Fund, Eastern Ontario Development Fund
   - Golden Horseshoe area excluded
 
-== Startups
+= Startups
 
 - Tend to be smaller dollar opportunities
 - May not be cash at all
