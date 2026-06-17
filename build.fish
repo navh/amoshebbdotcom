@@ -17,7 +17,7 @@ for src in posts/*.md
 end
 
 python3 build_index.py >_index.md
-for page in _index.md=index.html about.md=about.html dvorak.md=dvorak.html bitcoin.md=bitcoin.html
+for page in _index.md=index.html about.md=about.html dvorak.md=dvorak.html bitcoin.md=bitcoin.html 404.md=404.html
     set -l src (string split -m1 = $page)[1]
     set -l out (string split -m1 = $page)[2]
     echo "pandoc  $src"

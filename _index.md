@@ -2,7 +2,7 @@
 title: Amos Hebb
 ---
 
-[about](about.html)
+[about](about.html) · [amos@amoshebb.com](mailto:amos@amoshebb.com)
 
 ---
 

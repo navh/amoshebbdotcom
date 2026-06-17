@@ -15,3 +15,5 @@ and BEng Computer Engineering with First Class Distinction from the Royal Milita
 College of Canada.
 
 Grew up on a farm in Billtown, Nova Scotia. Rotary exchange student in Belgium.
+
+[amos@amoshebb.com](mailto:amos@amoshebb.com)
