@@ -6,6 +6,7 @@ title: Amos Hebb
 
 ---
 
+- 2026-06-25 — [Passed My Go/No-Go](posts/passed-my-go-no-go.html)
 - 2024-12-02 — [Synthetic Post-Dive Doppler Ultrasound](posts/synthetic-post-dive-doppler-ultrasound.html)
 - 2024-11-05 — [Distributed Multi Hypothesis Testing](posts/distributed-multi-hypothesis-testing.html)
 - 2024-05-02 — [Use JAX on Compute Canada/Digital Research Alliance of Canada](posts/use-jax-on-compute-canada.html)
