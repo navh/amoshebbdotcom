@@ -26,7 +26,7 @@ EuRAD 2026 accepted the first of these for oral presentation.
 I'm working on putting it on hardware, and stressing it out a bit more to try to demonstrate generalization.
 
 The longer term goal is something like "We have this infinite data machine, why are we targeting sparsity like robotics people".
-That said, even in just bandits, _continual rl_ feels elusive, _word models_ on games still cheat in obvious ways, and continuous big action spaces are pretty unwieldy.
+That said, even in just bandits, _continual rl_ feels elusive, _world models_ on games still cheat in obvious ways, and continuous big action spaces are pretty unwieldy.
 
 Defense is targeted for September 2029. 
 
