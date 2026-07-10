@@ -1,4 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+@font-face {
+  font-family: "Victor Mono";
+  src: url("/fonts/victormono-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Victor Mono";
+  src: url("/fonts/victormono-mediumitalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("/fonts/stixtwotext-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("/fonts/stixtwotext-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("/fonts/stixtwotext-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("/fonts/stixtwotext-semibolditalic.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("/fonts/stixtwotext-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "STIX Two Text";
+  src: url("/fonts/stixtwotext-bolditalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "STIX Two Math";
+  src: url("/fonts/stixtwomath-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -13,6 +66,10 @@ body {
   background: #fff;
 }
 
+math {
+  font-family: "STIX Two Math", "STIX Two Text", serif;
+}
+
 h1 { font-size: 1.85rem; font-weight: 600; margin: 0 0 0.25rem; }
 h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; }
 h3 { font-size: 1.3rem; font-weight: 600; margin-top: 1.5rem; }
@@ -25,9 +82,9 @@ a:visited { color: #000; }
 a:hover { text-decoration-thickness: 2px; }
 
 code, pre {
-  font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  font-size: 0.88em;
-  font-weight: 400;
+  font-family: "Victor Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  font-weight: 500;
 }
 pre {
   background: #fff;

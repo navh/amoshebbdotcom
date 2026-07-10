@@ -14,14 +14,6 @@
   set cite(style: "alphanumeric")
   html.elem("link", attrs: (rel: "stylesheet", href: "/style.css"))
   html.elem("link", attrs: (rel: "icon", href: "/favicon.ico"))
-  html.elem(
-    "script",
-    "window.MathJax = { output: { font: 'mathjax-stix2' } };",
-  )
-  html.elem(
-    "script",
-    attrs: (defer: "true", src: "https://cdn.jsdelivr.net/npm/mathjax@4.1.2/mml-chtml-nofont.js"),
-  )
   html.elem("nav", html.elem("a", attrs: (href: "/index.html"), "Amos Hebb"))
   html.elem("h1", info.title)
   if "date" in info {
