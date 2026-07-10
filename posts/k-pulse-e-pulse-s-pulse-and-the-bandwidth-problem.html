@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>K-pulse, E-pulse, S-pulse, and the Bandwidth Problem — Amos Hebb</title><style>/* Alignment */
+mtable.right-align mtd,
+mtable mtd.right-align,
+mtable.left-align mtd.right-align,
+mtable.aligned mtd:nth-child(odd) {
+  justify-items: end;
+  text-align: right;
+}
+mtable.cases mtd,
+mtable.left-align mtd,
+mtable mtd.left-align,
+mtable.aligned mtd:nth-child(even),
+math:is(:not([display])) > mtable.multiline-equation mtd {
+  justify-items: start;
+  text-align: left;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.left-flush {
+  padding-left: 0;
+}
+mtable.cases mtd,
+mtable.aligned mtd,
+mtable mtd.flushed,
+mtable mtd.right-flush {
+  padding-right: 0;
+}
+
+/* Tables */
+mtable {
+  math-style: inherit;
+}
+mtd {
+  math-depth: auto-add;
+  math-style: compact;
+  math-shift: compact;
+}
+
+/* Equations */
+mtable.multiline-equation mtd {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+  padding: 0;
+}
+math > mtable.multiline-equation mtr:not(:last-child) mtd {
+  padding-bottom: 0.5em;
+}
+
+/* Fractions */
+mfrac {
+  padding-inline: 0;
+  margin-inline: 0.1em;
+}
+
+/* Accents */
+mover[accent="true" i] > :first-child {
+  font-feature-settings: "dtls";
+}
+mover.dotted[accent="true" i] > :first-child {
+  font-feature-settings: "dtls" 0;
+}
+
+/* Other rules for scriptlevel, displaystyle and math-shift */
+munder > :nth-child(2),
+munderover > :nth-child(2) {
+  math-shift: compact
+}
+munder[accentunder="true" i] > :not(:first-child),
+mover[accent="true" i] > :not(:first-child) {
+  math-depth: inherit;
+  math-style: inherit;
+  math-shift: inherit;
+}</style></head><body><link rel="stylesheet" href="/style.css"><link rel="icon" href="/favicon.ico"><nav><a href="/index.html">Amos Hebb</a></nav><h1>K-pulse, E-pulse, S-pulse, and the Bandwidth Problem</h1><p class="date">2026-07-10</p><p>1980s radar waveforms called K-pulse, E-pulse, and S-pulse have been brought up a few times while I’ve been daydreaming about target-matched waveforms. I finally sat down and read the source papers properly. They’re good papers. I’m not going to chase the idea.</p><h2>Ringing fingerprints</h2><p>When a target is hit with an electromagnetic pulse, a strong echo comes back largely based on whatever complex geometry happens to be lit at any instant as the wave washes over it. These papers call this the <em>early-time response</em>. It changes quite a bit based on the viewing angle. None of these papers use this figure, but I believe the typical radar cross-section diagram, with a cute little airplane in the middle and spikes all around it, is dominated by this same early-time geometry. Once the wavefront has passed, though, the target keeps <em>ringing</em> on its own. This late-time response is a sum of damped sinusoids,</p><math display="block"><mi>𝑟</mi><mrow><mo>(</mo><mi>𝑡</mi><mo>)</mo></mrow><mo>=</mo><munder><mo form="prefix" lspace="0em">∑</mo><mi>𝑛</mi></munder><msub><mi>𝐴</mi><mi>𝑛</mi></msub><msup><mi>𝑒</mi><mrow><msub><mi>𝜎</mi><mi>𝑛</mi></msub><mi>𝑡</mi></mrow></msup><mo form="prefix" lspace="0.16666666666666666em" rspace="0em">cos</mo><mrow><mo>(</mo><mrow><msub><mi>𝜔</mi><mi>𝑛</mi></msub><mi>𝑡</mi><mo>+</mo><msub><mi>𝜙</mi><mi>𝑛</mi></msub></mrow><mo>)</mo></mrow><mo rspace="0em">,</mo><mspace width="1em"/><mi>𝑡</mi><mo>></mo><msub><mi>𝑡</mi><mi>𝐿</mi></msub><mo rspace="0em">,</mo></math><p>each term a <em>mode</em>, one damped resonance, the electromagnetic version of the distinct sound of any specific struck bell. The frequency <math><msub><mi>𝜔</mi><mi>𝑛</mi></msub></math> and decay rate <math><msub><mi>𝜎</mi><mi>𝑛</mi></msub></math> of each mode are properties of the target’s shape and material. They do not change when you rotate the target, or so the authors claim. My intuition does not line up with this at all. When I rotate a tuning fork, it sounds different to me. The amplitude <math><msub><mi>𝐴</mi><mi>𝑛</mi></msub></math> and phase <math><msub><mi>𝜙</mi><mi>𝑛</mi></msub></math> do change.</p><p>Carl Baum formalized this as the Singularity Expansion Method in the 1970s, and a group at Michigan State spent the 1980s turning it into actual identification schemes <span id="loc-1">[</span><a href="#loc-4" role="doc-biblioref">Bau+91</a>]. K-pulse, E-pulse, and S-pulse are 3 different ways of exploiting the same fingerprint.</p><h2>Kill-pulse</h2><p>Kennaugh’s K-pulse <span id="loc-2">[</span><a href="#loc-5" role="doc-biblioref">Ken81</a>] is the oldest of the 3. Rather than measuring the modes directly, Kennaugh proposes constructing a single waveform per target, shaped so that its spectrum has zeros sitting exactly on that target’s natural frequencies. Drive the target with its own K-pulse and there’s no ringing.</p><p>Kennaugh writes this as a spectral relationship, <math><msub><mi>𝐸</mi><mrow><mi>𝑛</mi><mrow><mo>(</mo><mi>𝑠</mi><mo>)</mo></mrow></mrow></msub><mo>=</mo><msub><mi>𝐹</mi><mrow><mi>𝑛</mi><mrow><mo>(</mo><mi>𝑠</mi><mo>)</mo></mrow></mrow></msub><mi>/</mi><mi>𝐾</mi><mrow><mo>(</mo><mi>𝑠</mi><mo>)</mo></mrow></math>, where <math><mi>𝐾</mi><mrow><mo>(</mo><mi>𝑠</mi><mo>)</mo></mrow></math> is the K-pulse spectrum and its zeros cancel the target’s poles. Identification, in this scheme, would be done by sending a library of candidate K-pulses at an unknown target and seeing which one rings the least. It only works for known targets, but that’s fine for cataloging common enemy aircraft, or for an “identify friend or foe” scheme that only needs to know what your own aircraft look like.</p><p>The K-pulse turns out to be close to the shortest possible member of the E-pulse family <span id="loc-3">[</span><a href="#loc-6" role="doc-biblioref">Rot+85</a>], which is somewhat assuring.</p><p>What bothers me about the K-pulse specifically is that “low energy” is the signal you’re looking for, and that’s backwards from how I’m used to thinking about detection, where you generally want more energy back, not less. It works cleanly for a wire in an anechoic chamber. A real drone, car, or aircraft strikes me as unlikely to be a single clean ringer. Instead I imagine a bag of electrically semi-isolated parts, each contributing its own set of poles. I’m not convinced a single K-pulse that nulls all of that simultaneously is something you can build outside of a chamber with a scale model in it.</p><h2>Extinguish-pulse</h2><p>The Michigan State group generalized Kennaugh’s idea into something more practical for a discrimination task with more than one candidate, the E-pulse [<a href="#loc-6" role="doc-biblioref">Rot+85</a>]. Instead of one pulse that kills the ringing outright, build a finite waveform whose convolution with a target’s late-time response is roughly zero. Build one E-pulse per library target, convolve a measured return against every E-pulse in the library, and whichever residual collapses to near-zero energy tells you which target you’re looking at.</p><p>The E-pulse comes in 2 flavors. The minimum-duration form is, again, close to the K-pulse. There are also longer “forced” variants that trade duration for the ability to null the response against more modes or against a more forgiving noise floor, which matters because in practice you don’t get to null infinitely many modes with a finite-length waveform, you pick a bunch of dominant poles you can extract and null those.</p><p>Baum’s chamber experiments are the part of this literature I found most persuasive [<a href="#loc-4" role="doc-biblioref">Bau+91</a>]. Testing against a library of aircraft scale models, the correct target’s late-time energy sits 10 to 30 dB below every incorrect target’s residual energy. The scheme also tolerates noise reasonably well, Rothwell et al. report that a 10 percent perturbation of the waveform barely dents discrimination performance [<a href="#loc-6" role="doc-biblioref">Rot+85</a>], and it tolerates motion, since target speed only shifts the modes by a factor of <math><mi>𝑣</mi><mi>/</mi><mi>𝑐</mi></math>. Known, predictable deformations, like a swept wing changing sweep angle, can even be pre-computed into the library. It’s still a closed-set library, probably useful, but with no pathway for coping with things it hasn’t seen before. That, and I still suspect real targets are electrically messier than anything these papers actually illuminated. The figure with the Big F-18 is fun though.</p><h2>Singlemode-pulse</h2><p>The S-pulse inverts the logic of the E-pulse. Rather than extinguishing every mode, it extinguishes every mode but one, leaving behind a single clean damped sinusoid you can measure directly [<a href="#loc-4" role="doc-biblioref">Bau+91</a>]. Baum built this not as an identification scheme but as a diagnostic tool, a way to extract a target’s natural frequencies experimentally rather than declare an identity. Every published experiment I found is E-pulse, not S-pulse, so the S-pulse reads as more of a lab technique for building the others.</p><p>It also eases my “bag of ringers” worry a little, since isolating the single strongest mode side-steps the question of what all the weaker parts of a complicated target contribute. But I’m still not sure what aspect-independence is supposed to mean here in practice. I picture a wire floating in space ringing away. Its natural frequencies don’t change with orientation, but the amount of energy you actually get back from it does. I suspect I’m missing something about how the S-pulse handles this, or about what claim it’s actually making, rather than the claim being wrong.</p><h2>Need for Speed</h2><p>The suspicion is that this whole family faded into obscurity partly because 1980s hardware couldn’t do anything with it, not because the physics was wrong.</p><p>Playing a clean, high-power, wideband E-pulse at the fidelity these experiments used needs a multi-gigahertz arbitrary waveform generator. Convolving every incoming return against an entire target library in anything like real time needs a lot of compute, though modern hardware makes that part far less daunting than it must have looked in 1985. The fragile step, in my reading, is extracting the poles themselves, upstream of all that. Prony’s method, the classical way to fit damped sinusoids to a measured response, is numerically ill-conditioned, which is why the field mostly moved to matrix-pencil estimators for pole extraction [<a href="#loc-4" role="doc-biblioref">Bau+91</a>]. This all smells like the fiddly type of <em>solved-ish in MATLAB</em>, which I’m trying to steer well clear of. There’s no obvious “map an actual return to some poles” method here.</p><p>Rothwell and Baum validated all of this on scale models, a Boeing 707 against an F-18, and a library of 8 different aircraft in an anechoic chamber [<a href="#loc-4" role="doc-biblioref">Bau+91</a>, <a href="#loc-6" role="doc-biblioref">Rot+85</a>]. As far as I can tell, nobody has since fielded it against real targets sitting in real clutter. There’s supposedly a USA or DARPA-funded path to distributed, multi-scatterer targets. I went looking but could not find anything else about it.</p><h2>Will not do</h2><p>The reason this kept resurfacing is that “drone or bird” is a real, recurring, annoying classification problem, and an aspect-robust resonance fingerprint sounds like exactly the feature you’d want for it.</p><p>For a spherical cow, the lowest mode sits near <math><mi>𝑐</mi><mi>/</mi><mn>2</mn><mi>𝐿</mi></math>, so the longest dimension sets the frequency you need to illuminate at. A 20 cm drone rings from a few hundred megahertz to a few gigahertz. A 4 m car rings in the tens of megahertz. A 40 m airliner rings at only a few megahertz. None of what I have is matched to this, wrong band for 2 of the 3 targets, and not enough relative bandwidth for the one that is close. Maybe there’s a passive reason to do this. For active radar, at least, you can’t point one instrument at all 3 problems.</p><p>I ran this against the 2 (ultra non-ultrawideband) radars I have access to.</p><p>PARSAX transmits at 3150 MHz with 50 MHz of bandwidth. The center frequency is right in the drone’s modal region, which felt promising. Maybe I could confirm this by dangling a rod of known length under the beam and checking whether its predicted ring-down shows up. But 50 MHz is 1.6 percent of a 3150 MHz carrier (I think ultrawideband is usually somewhere past 10 percent fractional bandwidth, but I’m not certain), and mode spacing for a 20 cm target runs near <math><mi>𝑐</mi><mi>/</mi><mn>2</mn><mi>𝐿</mi></math>, about 750 MHz. A 50 MHz window will never span more than one mode. That breaks the E-pulse mechanism outright, because E-pulse discrimination depends on nulling at least 2 poles to build an aspect-invariant fingerprint. For cars, motorcycles, and trucks, the band problem is worse. Aircraft are by far the worst. I would love to build a Boeing 737 vs Cessna 172 classifier. They come and go from Rotterdam The Hague Airport all the time. But the spherical cow version of these aircraft rings around 4 to 40 MHz, nowhere close to where I can work.</p><section role="doc-bibliography"><h2>Bibliography</h2><ul style="list-style-type: none"><li id="loc-4"><span class="prefix"><a href="#loc-1" role="doc-backlink">[Bau+91]</a></span> C. E. Baum, E. J. Rothwell, K.-M. Chen, and D. P. Nyquist, “The Singularity Expansion Method and Its Application to Target Identification,” <em>Proceedings of the IEEE</em>, vol. 79, no. 10, pp. 1481–1492, Oct. 1991.</li><li id="loc-5"><span class="prefix"><a href="#loc-2" role="doc-backlink">[Ken81]</a></span> E. M. Kennaugh, “The K-Pulse Concept,” <em>IEEE Transactions on Antennas and Propagation</em>, vol. 29, no. 2, pp. 327–331, Mar. 1981.</li><li id="loc-6"><span class="prefix"><a href="#loc-3" role="doc-backlink">[Rot+85]</a></span> E. J. Rothwell, D. P. Nyquist, K.-M. Chen, and B. Drachman, “Radar Target Discrimination Using the Extinction-Pulse Technique,” <em>IEEE Transactions on Antennas and Propagation</em>, vol. 33, no. 9, pp. 929–937, Sep. 1985.</li></ul></section><footer><a href="/index.html">← index</a></footer></body></html>
