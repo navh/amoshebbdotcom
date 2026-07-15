@@ -16,6 +16,9 @@ for src in posts/*.md
     pandoc $src -o $out $pandoc_flags --variable root=../
 end
 
+echo "typst   cv.typ"
+typst compile cv.typ cv.pdf
+
 python3 build_index.py >_index.md
 for page in _index.md=index.html about.md=about.html dvorak.md=dvorak.html bitcoin.md=bitcoin.html 404.md=404.html
     set -l src (string split -m1 = $page)[1]
