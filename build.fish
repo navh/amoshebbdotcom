@@ -2,7 +2,7 @@
 # Build the site locally. Run this before every `git push`.
 
 set -l typst_flags --features html --format html --root .
-set -l pandoc_flags --template=template.html --mathml --syntax-highlighting=monochrome --citeproc
+set -l pandoc_flags --template=template.html --mathml --highlight-style=monochrome --citeproc
 
 for src in posts/*.typ
     set -l out (string replace -r '\.typ$' '.html' $src)
