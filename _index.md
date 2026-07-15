@@ -6,6 +6,7 @@ title: Amos Hebb
 
 ---
 
+- 2026-07-15 — [Does Amplitude Modulation Melt a Radar Amplifier?](posts/does-amplitude-modulation-melt-a-radar-amplifier.html)
 - 2026-07-10 — [K-pulse, E-pulse, S-pulse, and the Bandwidth Problem](posts/k-pulse-e-pulse-s-pulse-and-the-bandwidth-problem.html)
 - 2026-06-25 — [Passed My Go/No-Go](posts/passed-my-go-no-go.html)
 - 2024-12-02 — [Synthetic Post-Dive Doppler Ultrasound](posts/synthetic-post-dive-doppler-ultrasound.html)
