@@ -20,7 +20,7 @@ It produces current pulses gated by a bias point sitting past cutoff, and a tune
 There's no amplitude information left to carry through that process, so feeding it a waveform whose amplitude matters isn't a compatibility problem you can push through with more drive.
 This point didn't come up during the summer school's session on communication over pulsed radar.
 
-= Two amplifiers, one transistor
+= Gallium Nitride
 
 A radar power amplifier (often PA, or HPA for "high-power") and a communications power amplifier increasingly use the same semiconductor, gallium nitride on both sides.
 A communications power amplifier has to survive a waveform with a high peak-to-average power ratio (PAPR) without distorting it, so it runs well back from saturation.
