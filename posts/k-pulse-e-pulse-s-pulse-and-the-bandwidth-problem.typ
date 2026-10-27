@@ -33,7 +33,7 @@ Kennaugh's K-pulse @kennaugh1981kpulse is the oldest of the 3.
 Rather than measuring the modes directly, Kennaugh proposes constructing a single waveform per target, shaped so that its spectrum has zeros sitting exactly on that target's natural frequencies.
 Drive the target with its own K-pulse and there's no ringing.
 
-Kennaugh writes this as a spectral relationship, $E_n(s) = F_n(s) \/ K(s)$, where $K(s)$ is the K-pulse spectrum and its zeros cancel the target's poles.
+Kennaugh writes this as a spectral relationship, $E_n (s) = F_n (s) \/ K(s)$, where $K(s)$ is the K-pulse spectrum and its zeros cancel the target's poles.
 Identification, in this scheme, would be done by sending a library of candidate K-pulses at an unknown target and seeing which one rings the least.
 It only works for known targets, but that's fine for cataloging common enemy aircraft, or for an "identify friend or foe" scheme that only needs to know what your own aircraft look like.
 
